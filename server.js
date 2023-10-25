@@ -1,3 +1,6 @@
+//Mitchell Hess
+//mph0114
+
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const jose = require('node-jose');
