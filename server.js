@@ -55,7 +55,7 @@ function generateExpiredJWT() {
 
 // database operations
 function Database() {
-  const sqlite3 = require('sqlite3').verbose();
+  //const sqlite3 = require('sqlite3').verbose();
   let db = new sqlite3.Database('./totally_not_my_privateKeys.db'); // create database file
   db.run('CREATE TABLE IF NOT EXISTS keys(kid INTEGER PRIMARY KEY AUTOINCREMENT,key BLOB NOT NULL,exp INTEGER NOT NULL)'); // create table
   db.run('INSERT INTO keys(key, exp) VALUES(?, ?)', [keyPair.toPEM(true), Math.floor(Date.now() / 1000) + 3600]); // insert valid private key into database
@@ -95,6 +95,8 @@ generateKeyPairs().then(() => {
   generateExpiredJWT()
   Database()
   app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`);
+    //console.log(`Server started on http://localhost:${port}`);
   });
 });
+
+module.exports = app;
